@@ -1,0 +1,98 @@
+const activities = [
+  {
+    id: 1,
+    name: "Trekking & Hiking",
+    description: "Explore pristine trails through rhododendron forests and alpine meadows with breathtaking mountain views.",
+    longDescription: "Embark on an unforgettable trekking adventure through the pristine landscapes of Sikkim. Our expert guides will lead you through ancient rhododendron forests, across alpine meadows, and up to stunning viewpoints offering panoramic views of the mighty Kanchenjunga and surrounding peaks. This multi-day trek is perfect for nature enthusiasts and adventure seekers looking to immerse themselves in the natural beauty of the Eastern Himalayas.",
+    image: "https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&q=80",
+    difficulty: "Moderate",
+    duration: "3-7 Days",
+    bestSeason: "March-May, Sept-Nov",
+    category: "Adventure",
+    actionLabel: "Plan Trek",
+    features: ["Expert Guides", "Safety Equipment", "Mountain Permits", "Camping Gear", "Meals Included", "First Aid Support"],
+    whatToBring: ["Trekking boots", "Warm layers", "Rain jacket", "Sunscreen", "Water bottle", "Personal medications", "Headlamp", "Trekking poles"],
+    highlights: [
+      "Witness stunning sunrise views over Kanchenjunga",
+      "Walk through blooming rhododendron forests",
+      "Experience local village culture",
+      "Camp under star-filled mountain skies"
+    ],
+    safetyInfo: "All treks are led by certified mountain guides with extensive knowledge of the terrain and weather patterns. We maintain small group sizes for personalized attention and safety.",
+    preparation: "Participants should have moderate fitness levels and acclimatize properly before high-altitude sections.",
+    experienceLevel: "Suitable for beginners to intermediate trekkers"
+  },
+  {
+    id: 2,
+    name: "River Rafting",
+    description: "Experience the thrill of white water rafting on the mighty Teesta and Rangit rivers.",
+    longDescription: "Get your adrenaline pumping with an exhilarating white water rafting experience on the crystal-clear waters of Teesta and Rangit rivers. Navigate through Grade II to IV rapids under the guidance of certified instructors, surrounded by lush green hills and spectacular mountain scenery. Perfect for thrill-seekers and water sports enthusiasts.",
+    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
+    difficulty: "Challenging",
+    duration: "2-4 Hours",
+    bestSeason: "October-April",
+    category: "Adventure",
+    actionLabel: "Book Now",
+    features: ["Grade II-IV Rapids", "Safety Gear", "Professional Instructors", "Safety Kayakers", "Riverside Refreshments", "Photo Package Available"],
+    whatToBring: ["Swimming costume", "Spare clothes", "Waterproof bag", "Sunscreen", "Secure footwear", "Towel"],
+    highlights: [
+      "Navigate thrilling Grade III-IV rapids",
+      "Enjoy scenic views of the Himalayan foothills",
+      "Learn professional rafting techniques",
+      "Experience the power of mountain rivers"
+    ],
+    safetyInfo: "All participants must wear life jackets and helmets. Our safety kayakers patrol the river during all sessions. Comprehensive safety briefing provided before departure.",
+    preparation: "Basic swimming knowledge recommended. Not suitable for pregnant women or people with heart conditions.",
+    experienceLevel: "Suitable for adventure seekers with good physical fitness"
+  },
+  {
+    id: 3,
+    name: "Monastery Tours",
+    description: "Visit ancient Buddhist monasteries and immerse yourself in spiritual traditions and culture.",
+    longDescription: "Journey through Sikkim's rich spiritual heritage with guided tours of ancient Buddhist monasteries. Experience the peaceful atmosphere of these sacred sites, witness prayer ceremonies, observe intricate murals and sculptures, and learn about Tibetan Buddhism from knowledgeable local guides. A perfect cultural immersion for those seeking spiritual enrichment and cultural understanding.",
+    image: "https://images.unsplash.com/photo-1548013146-72479768bada?w=800&q=80",
+    difficulty: "Easy",
+    duration: "Half Day",
+    bestSeason: "Year Round",
+    category: "Cultural",
+    actionLabel: "Explore",
+    features: ["Cultural Insights", "Prayer Ceremonies", "Local Guides", "Photography Allowed", "Traditional Tea", "Souvenir Shop Access"],
+    whatToBring: ["Modest clothing", "Comfortable walking shoes", "Camera", "Small donation (optional)", "Notebook for insights", "Water bottle"],
+    highlights: [
+      "Visit centuries-old monasteries",
+      "Witness monks in prayer ceremonies",
+      "Learn about Buddhist philosophy and practices",
+      "View ancient murals and sacred artifacts",
+      "Experience traditional butter lamp lighting"
+    ],
+    safetyInfo: "Respectful behavior and modest dress required. Photography may be restricted in certain areas. Please follow guide instructions.",
+    preparation: "Dress modestly covering shoulders and knees. Remove shoes before entering prayer halls. Maintain silence in sacred areas.",
+    experienceLevel: "Suitable for all ages and fitness levels"
+  },
+  {
+    id: 4,
+    name: "Paragliding",
+    description: "Soar above the mountains and valleys with tandem paragliding experiences.",
+    longDescription: "Experience the ultimate bird's eye view of Sikkim's stunning landscape with our tandem paragliding adventures. Fly with experienced, certified pilots and soar over verdant valleys, traditional villages, and witness the majestic Himalayan peaks from a unique perspective. Feel the rush of wind and freedom as you glide through the mountain air in complete safety.",
+    image: "https://images.unsplash.com/photo-1527236438218-d82077ae1f85?w=800&q=80",
+    difficulty: "Moderate",
+    duration: "30-45 Minutes",
+    bestSeason: "October-December",
+    category: "Adventure",
+    actionLabel: "Book Flight",
+    features: ["Tandem Flights", "Certified Pilots", "Photo Package", "Video Recording", "Safety Equipment", "Pre-flight Briefing"],
+    whatToBring: ["Comfortable sports shoes", "Sunglasses with strap", "Light jacket", "Camera with strap", "Valid ID proof", "Minimal belongings"],
+    highlights: [
+      "Soar at heights up to 2,000 feet",
+      "Panoramic views of the Himalayas",
+      "Professional photo and video documentation",
+      "Experience weightless flight",
+      "Safe landing on designated sites"
+    ],
+    safetyInfo: "All pilots are certified by international paragliding associations. Equipment is regularly inspected and maintained to highest standards. Weather conditions carefully monitored.",
+    preparation: "Weight restrictions apply (40-100 kg). Not suitable for pregnant women or people with severe medical conditions. Weather-dependent activity.",
+    experienceLevel: "No prior experience needed - suitable for first-time flyers"
+  }
+];
+
+export default activities;
