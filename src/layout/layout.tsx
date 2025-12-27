@@ -3,6 +3,7 @@ import Navigation from "../components/Nav";
 import Footer from "../components/footer";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 
 
@@ -20,6 +21,7 @@ export default function Layout(){
         <>
          <Navigation></Navigation>
          <ScrollToTop></ScrollToTop>
+         <ToastContainer></ToastContainer>
          <Outlet></Outlet>
          <Footer></Footer>
         </>

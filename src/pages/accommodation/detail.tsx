@@ -1,52 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import accommodations from '../../data/hotel';
+import HotelBookingModal from './modal'; // Import the modal
 
 const AccommodationDetailPage = () => {
-  // Get accommodation ID from URL
   const { id } = useParams();
   const [accommodation, setAccommodation] = useState<any>(null);
-  const [selectedRoomType, setSelectedRoomType] = useState('');
-  const [checkInDate, setCheckInDate] = useState('');
-  const [checkOutDate, setCheckOutDate] = useState('');
-  const [guests, setGuests] = useState(1);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
   useEffect(() => {
     if (!id) return;
     const accommodationId = parseInt(id, 10);
     const found = accommodations.find(acc => acc.id === accommodationId);
     setAccommodation(found);
-    if (found && found.roomTypes) {
-      setSelectedRoomType(found.roomTypes[0]);
-    }
     window.scrollTo(0, 0);
   }, [id]);
 
   const handleBooking = () => {
-    if (!checkInDate || !checkOutDate) {
-      alert('Please select check-in and check-out dates');
-      return;
-    }
-    alert(`Booking ${accommodation?.name}\nRoom: ${selectedRoomType}\nCheck-in: ${checkInDate}\nCheck-out: ${checkOutDate}\nGuests: ${guests}`);
+    setIsBookingModalOpen(true);
   };
 
   const handleWhatsAppContact = () => {
     const phoneNumber = '1234567890';
-    const message = encodeURIComponent(`Hi, I'm interested in booking ${accommodation?.name} for ${guests} guest(s)`);
+    const message = encodeURIComponent(`Hi, I'm interested in booking ${accommodation?.name}`);
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
-  };
-
-  const calculateNights = () => {
-    if (!checkInDate || !checkOutDate) return 0;
-    const start = new Date(checkInDate);
-    const end = new Date(checkOutDate);
-    const nights = Math.ceil((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
-    return nights > 0 ? nights : 0;
-  };
-
-  const calculateTotalPrice = () => {
-    const nights = calculateNights();
-    return nights * accommodation.pricePerNight;
   };
 
   if (!accommodation) {
@@ -237,84 +214,21 @@ const AccommodationDetailPage = () => {
                 <p className="text-slate-600">Reserve your room now</p>
               </div>
 
-              {/* Booking Form */}
-              <div className="space-y-4 mb-6">
-                {/* Room Type Selection */}
-                {accommodation.roomTypes && accommodation.roomTypes.length > 0 && (
-                  <div>
-                    <label className="block text-sm font-semibold text-slate-700 mb-2">
-                      Room Type
-                    </label>
-                    <select
-                      value={selectedRoomType}
-                      onChange={(e) => setSelectedRoomType(e.target.value)}
-                      className="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
-                    >
-                      {accommodation.roomTypes.map((room: any, idx: any) => (
-                        <option key={idx} value={room}>{room}</option>
-                      ))}
-                    </select>
-                  </div>
-                )}
-
-                {/* Check-in Date */}
-                <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">
-                    Check-in Date
-                  </label>
-                  <input
-                    type="date"
-                    value={checkInDate}
-                    onChange={(e) => setCheckInDate(e.target.value)}
-                    min={new Date().toISOString().split('T')[0]}
-                    className="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
-                  />
+              {/* Quick Info */}
+              <div className="space-y-3 mb-6">
+                <div className="flex justify-between items-center py-2 border-b border-slate-200">
+                  <span className="text-slate-600 font-medium">Price per night</span>
+                  <span className="text-slate-800 font-bold">₹{accommodation.pricePerNight.toLocaleString()}</span>
                 </div>
-
-                {/* Check-out Date */}
-                <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">
-                    Check-out Date
-                  </label>
-                  <input
-                    type="date"
-                    value={checkOutDate}
-                    onChange={(e) => setCheckOutDate(e.target.value)}
-                    min={checkInDate || new Date().toISOString().split('T')[0]}
-                    className="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
-                  />
+                <div className="flex justify-between items-center py-2 border-b border-slate-200">
+                  <span className="text-slate-600 font-medium">Check-in</span>
+                  <span className="text-slate-800 font-bold">{accommodation.checkIn}</span>
                 </div>
-
-                {/* Number of Guests */}
-                <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">
-                    Number of Guests
-                  </label>
-                  <input
-                    type="number"
-                    value={guests}
-                    onChange={(e) => setGuests(parseInt(e.target.value) || 1)}
-                    min="1"
-                    max="10"
-                    className="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
-                  />
+                <div className="flex justify-between items-center py-2">
+                  <span className="text-slate-600 font-medium">Check-out</span>
+                  <span className="text-slate-800 font-bold">{accommodation.checkOut}</span>
                 </div>
               </div>
-
-              {/* Price Summary */}
-              {checkInDate && checkOutDate && calculateNights() > 0 && (
-                <div className="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-100">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-slate-600">₹{accommodation.pricePerNight.toLocaleString()} x {calculateNights()} nights</span>
-                    <span className="font-semibold text-slate-800">₹{(accommodation.pricePerNight * calculateNights()).toLocaleString()}</span>
-                  </div>
-                  <div className="border-t border-blue-200 my-2"></div>
-                  <div className="flex justify-between items-center">
-                    <span className="font-bold text-slate-800">Total</span>
-                    <span className="font-bold text-blue-600 text-xl">₹{calculateTotalPrice().toLocaleString()}</span>
-                  </div>
-                </div>
-              )}
 
               {/* Booking Buttons */}
               <div className="space-y-3">
@@ -377,6 +291,17 @@ const AccommodationDetailPage = () => {
           </a>
         </div>
       </section>
+
+      {/* Hotel Booking Modal */}
+      <HotelBookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+        hotelData={{
+          name: accommodation.name,
+          pricePerNight: accommodation.pricePerNight,
+          roomTypes: accommodation.roomTypes || [],
+        }}
+      />
     </div>
   );
 };

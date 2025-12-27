@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import activities from '../../data/activity'; // Import your activities data
+import activities from '../../data/activity';
+import ActivityBookingModal from './modal'; // Import the modal
 
 const ActivityDetailPage: React.FC = () => {
-  const { id } = useParams<{ id?: string }>(); // Get activity ID from URL
+  const { id } = useParams<{ id?: string }>();
   const navigate = useNavigate();
   const [activity, setActivity] = useState<any | null>(null);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
 
   useEffect(() => {
     if (!id) {
@@ -23,11 +25,11 @@ const ActivityDetailPage: React.FC = () => {
   }, [id]);
 
   const handleBooking = () => {
-    alert(`Booking ${activity?.name ?? 'this activity'} - Functionality to be implemented`);
+    setIsBookingModalOpen(true);
   };
 
   const handleWhatsAppContact = () => {
-    const phoneNumber = '1234567890'; // Replace with actual number
+    const phoneNumber = '1234567890';
     const message = encodeURIComponent(`Hi, I'm interested in ${activity?.name}`);
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
   };
@@ -43,9 +45,9 @@ const ActivityDetailPage: React.FC = () => {
       </div>
     );
   }
+
   type Difficulty = 'Easy' | 'Moderate' | 'Challenging' | 'Very Challenging';
   
-  // Difficulty color mapping
   const getDifficultyColor = (difficulty: Difficulty) => {
     const colors = {
       'Easy': 'bg-green-100 text-green-700 border-green-300',
@@ -57,8 +59,8 @@ const ActivityDetailPage: React.FC = () => {
   };
 
   type Category = 'Adventure' | 'Cultural' | 'Wellness' | 'Nature';
-  // Category color mapping
-  const getCategoryColor = (category:Category) => {
+  
+  const getCategoryColor = (category: Category) => {
     const colors = {
       'Adventure': 'bg-blue-500',
       'Cultural': 'bg-purple-500',
@@ -190,12 +192,11 @@ const ActivityDetailPage: React.FC = () => {
               </h2>
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {(activity.whatToBring ?? []).map((item: string, idx: number) => (
-                  <li className="flex items-start gap-2">
-                  <span className="text-blue-500 mt-1">→</span>
-                  <span className="text-slate-700">{item}</span>
-                </li>
+                  <li key={idx} className="flex items-start gap-2">
+                    <span className="text-blue-500 mt-1">→</span>
+                    <span className="text-slate-700">{item}</span>
+                  </li>
                 ))}
-                
               </ul>
             </div>
           </div>
@@ -317,6 +318,13 @@ const ActivityDetailPage: React.FC = () => {
           </Link>
         </div>
       </section>
+
+      {/* Booking Modal */}
+      <ActivityBookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+        activityName={activity.name}
+      />
     </div>
   );
 };

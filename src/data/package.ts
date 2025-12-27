@@ -197,7 +197,7 @@ const packages: any = [
   description:
     "Experience the thrill of visiting Nathula Pass (14,140 ft), one of the most iconic mountain passes on the Indo-China border, with our 1 Day Nathula Sharing Tour from Gangtok. This budget-friendly trip is perfect for travelers who wish to explore Nathula in a shared vehicle without the hassle of arranging permits and transport.",
     
-  price: 0, // Set dynamically
+  price: 2000, // Set dynamically
   duration: "1 day",
   type: "Sharing Tour",
   rating: 5,
